@@ -1,0 +1,19 @@
+mutation CustomerUpdate {
+  customerUpdate(
+    input: {
+      id: "gid://shopify/Customer/1234567890"
+      firstName: "taro"
+      lastName: "yamada"
+    }
+  ) {
+    customer {
+      id
+      firstName
+      lastName
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

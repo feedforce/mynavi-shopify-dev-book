@@ -1,0 +1,23 @@
+{
+  appInstallation {
+    allSubscriptions(first: 10) {
+      edges {
+        node {
+          status
+          lineItems {
+            plan {
+              pricingDetails {
+                ... on AppRecurringPricing {
+                  price {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

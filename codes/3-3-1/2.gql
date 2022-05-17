@@ -1,0 +1,13 @@
+query FindCustomerWithEmail($id: ID!) {
+  customer(id: $id) {
+    id
+    email
+  }
+}
+
+query FindCustomerWithPhone($id: ID!) {
+  customer(id: $id) {
+    id
+    phone
+  }
+}
