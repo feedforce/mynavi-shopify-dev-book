@@ -1,0 +1,14 @@
+{
+  # 商品を10件取得します
+  products(first: 10) {
+    # edgesとnodeは「複数個のリソースを取得する」ときの作法のようなものです。
+    # ShopifyではなくGraphQL一般の決まりごとです。
+    # 詳しくは https://graphql.org/learn/pagination を参照してください。
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
+}
