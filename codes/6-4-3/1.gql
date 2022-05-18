@@ -1,0 +1,9 @@
+query {
+  # [6.4.2] で取得したカスタマーアクセストークンを渡します
+  customer(customerAccessToken: "***") {
+    id
+    email
+    firstName
+    lastName
+  }
+}

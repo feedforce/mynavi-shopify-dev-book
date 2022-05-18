@@ -1,0 +1,15 @@
+mutation {
+  # 顧客のメールアドレスとパスワードを渡します
+  customerAccessTokenCreate(
+    input: { email: "your-mailaddress@example.com", password: "yourpassword" }
+  ) {
+    customerUserErrors {
+      code
+      field
+      message
+    }
+    customerAccessToken {
+      accessToken
+    }
+  }
+}
