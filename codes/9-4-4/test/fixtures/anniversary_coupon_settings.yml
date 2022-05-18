@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  months: 1
+  amount: 1
+
+two:
+  shop: two
+  months: 1
+  amount: 1

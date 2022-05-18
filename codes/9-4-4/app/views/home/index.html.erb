@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@shopify/polaris@9.2.2/build/esm/styles.css"
+    />
+  </head>
+  <body>
+    <%= react_component("App",
+      apiKey: ShopifyApp.configuration.api_key,
+      shopOrigin: @shop_origin || (@current_shopify_session.domain if @current_shopify_session),
+      host: @host,
+      debug: Rails.env.development?
+    ) %>
+  </body>
+</html>
