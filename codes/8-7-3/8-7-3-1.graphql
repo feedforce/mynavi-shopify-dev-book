@@ -1,0 +1,17 @@
+mutation {
+  webhookSubscriptionCreate(
+    topic: ORDERS_CREATE
+    webhookSubscription: {
+      format: JSON
+      callbackUrl: "https://12345.ngrok.io/"
+    }
+  ) {
+    userErrors {
+      field
+      message
+    }
+    webhookSubscription {
+      id
+    }
+  }
+}
