@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <% application_name = ShopifyApp.configuration.application_name %>
+    <title><%= application_name %></title>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <div class="app-wrapper">
+      <div class="app-content">
+        <main role="main">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
