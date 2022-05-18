@@ -1,0 +1,200 @@
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .stores-title {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  .stores-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .section-{{ section.id }} .stores-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr); /* 横2列で表示 */ 
+    justify-content: center;
+  }
+  
+  .store-block { 
+    margin-bottom: 20px;
+  }
+
+  .store {
+    background-color: #fff;
+    text-decoration: none;
+  }
+  
+  .store-header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .store-title {
+    margin: 0;
+  }
+
+  .store-thumbnail {
+    margin: 0;
+  }
+
+  .store-image {
+    width: 100%;
+  }
+
+  .store-text {
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .section-{{ section.id }} .stores-grid {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(2, 1fr); /* 横2列で表示 */
+      justify-content: center;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+  <h1 class="main-page-title page-title h0">
+    {{ page.title | escape }}
+  </h1>
+  <div class="rte">
+    {{ page.content }}
+  </div>
+
+
+  <!-- 1つの店舗を表現する要素を追加 --> 
+  <div class="stores-grid">
+
+    <!-- 複数のblockで店舗情報を表現するためのイテレーション -->
+    {%- for block in section.blocks -%}
+
+    <div class="store-block">
+      <article class="store">
+        <div class="store-header">
+          <!-- block要素のstore_linkが存在している場合のみ -->
+          {% if block.settings.store_link %}
+            <a href="{{ block.settings.store_link }}" class="full-unstyled-link">
+          {% endif %}
+            <!-- block要素のstore_imageが存在している場合のみ -->
+            {% if block.settings.store_image %}
+              <figure class="store-thumbnail">
+                <img
+                  class="store-image" 
+                  src="{{ block.settings.store_image | image_url }}" 
+                  alt="{{ block.settings.store_image.alt }}"
+                  width="720" 
+                  height="auto" 
+                  loading="lazy"
+                >
+              </figure>
+            {% endif %}
+
+            <!-- block要素のtitleが存在している場合のみ -->
+            {% if block.settings.title %}
+            <h3 class="store-title">{{ block.settings.title }}</h3>
+            {% endif %}
+
+          {% if block.settings.store_link %}
+            </a>
+          {% endif %}
+        </div>
+        <div class="store-body">
+          <!-- block要素のstore_addressが存在している場合のみ -->
+          {% if block.settings.store_address %}
+          <p class="store-text">{{ block.settings.store_address }}</p>
+          {% endif %}
+        </div>
+      </article>
+    </div>
+
+    {%- endfor -%}
+  </div>
+  <!--1つの店舗を表現する要素を追加 ここまで-->
+
+</div>
+
+{% schema %}
+{
+  "name": "店舗一覧",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "store_info",
+      "name": "店舗情報",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "store_image",
+          "label": "店舗画像"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Store Name",
+          "label": "店舗名"
+        },
+        {
+          "type": "text",
+          "id": "store_address",
+          "default": "Store Address",
+          "label": "店舗住所"
+        },
+        {
+          "type": "url",
+          "id": "store_link",
+          "label": "店舗ページURL"
+        } 
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
