@@ -1,0 +1,13 @@
+{
+  shop {
+    customers(first: 10) {
+      edges {
+        node {
+          id
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+}

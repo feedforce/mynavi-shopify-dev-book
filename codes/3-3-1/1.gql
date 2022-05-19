@@ -1,0 +1,6 @@
+query FindCustomer($id: ID!) {
+  customer(id: $id) {
+    id
+    email
+  }
+}

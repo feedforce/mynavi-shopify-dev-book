@@ -1,0 +1,19 @@
+{
+  customers(
+    first: 10
+    after: "eyJsYXN0X2lkIjoiMDk4NzY1NDMyMSIsImxhc3RfdmFsdWUiOiIwOTg3NjU0MzIxIn0="
+  ) {
+    edges {
+      node {
+        id
+        firstName
+        lastName
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
+  }
+}

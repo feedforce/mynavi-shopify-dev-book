@@ -1,0 +1,16 @@
+{
+  customers(first: 10) {
+    edges {
+      node {
+        id
+        firstName
+        lastName
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
+  }
+}

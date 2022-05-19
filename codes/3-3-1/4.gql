@@ -1,0 +1,6 @@
+{
+  customer(id: "gid://Shopify/Customer/1234567890") {
+    id
+    email
+  }
+}
